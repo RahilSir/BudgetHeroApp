@@ -64,7 +64,7 @@ Clone the repository:
 bash
 Copy
 Edit
-git clone https://github.com/yourusername/BudgetApp.git
+git clone https://github.com/RahilSir/BudgetApp.git
 Open the project in Android Studio.
 
 Sync Gradle files.
