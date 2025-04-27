@@ -1,0 +1,5 @@
+<resources>
+    <color name="colorPrimary">#6200EE</color> <!-- Choose a color for your primary color -->
+    <color name="colorPrimaryDark">#3700B3</color> <!-- Choose a darker shade of your primary color -->
+    <color name="colorAccent">#03DAC5</color> <!-- Choose a color for your accent -->
+</resources>
