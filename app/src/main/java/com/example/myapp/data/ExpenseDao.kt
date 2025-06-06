@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface ExpenseDao {
     @Insert
-    suspend fun insertExpense(expense: Expense) // Insert expense into the database
+    suspend fun insertExpense(expense: Expense) // Insert  into the database
 
 
 
@@ -37,6 +37,8 @@ interface ExpenseDao {
     ////suspend fun getCategoryTotalsByDate(username: String, startDate: String, endDate: String): List<CategoryTotal>
 
 
+    @Query("SELECT SUM(CAST(amount AS REAL)) FROM expenses WHERE username = :username")
+    suspend fun getTotalAmountByUsername(username: String): Double?
 
 
 }

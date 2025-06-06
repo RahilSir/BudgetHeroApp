@@ -15,5 +15,7 @@ interface GoalDao {
     @Query("SELECT * FROM goals")
     suspend fun getAllGoals(): List<Goal>
 
+    @Query("SELECT * FROM goals ORDER BY id DESC LIMIT 1")
+    suspend fun getLatestGoal(): Goal?
 
 }

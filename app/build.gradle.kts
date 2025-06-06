@@ -8,6 +8,9 @@ plugins {
 
 }
 
+
+
+
 android {
     namespace = "com.example.myapp"
     compileSdk = 35
@@ -41,9 +44,15 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.0" // Or your Compose version
+    }
 }
 
 dependencies {
+
+
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -70,12 +79,15 @@ dependencies {
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
 
+
+
     val roomVersion = "2.6.1"
 
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
 
     kapt("androidx.room:room-compiler:$roomVersion")
+
 
 
 

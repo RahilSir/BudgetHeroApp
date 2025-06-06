@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         btnRegister = findViewById(R.id.btnRegister)
 
-        // Get saved username and password from SharedPreferences
+
         val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val savedUsername = sharedPreferences.getString("username", "")
         val savedPassword = sharedPreferences.getString("password", "")

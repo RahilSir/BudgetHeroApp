@@ -19,6 +19,8 @@ import com.example.myapp.data.ExpenseDao
 import com.example.myapp.data.AppDatabase
 import com.example.myapp.data.GoalDao
 import kotlinx.coroutines.withContext
+import kotlin.math.max
+import kotlin.math.min
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     private var selectedImageUri: Uri? = null
 
 
+    private lateinit var progressBar: ProgressBar
+    private lateinit var tvProgressInfo: TextView
 
 
     @SuppressLint("MissingInflatedId")
@@ -76,6 +80,14 @@ class MainActivity : AppCompatActivity() {
         etMaxGoal = findViewById(R.id.etMaxGoal)
         btnSaveGoals = findViewById(R.id.btnSaveGoals)
 
+// progess bar
+        progressBar = findViewById(R.id.progressBar)
+        tvProgressInfo = findViewById(R.id.tvProgressInfo)
+
+
+
+
+
         //  Room Database
         val db = AppDatabase.getDatabase(applicationContext)
         expenseDao = db.expenseDao()
@@ -96,6 +108,9 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter valid goals", Toast.LENGTH_SHORT).show()
             }
+
+
+
         }
 
 
@@ -150,6 +165,34 @@ class MainActivity : AppCompatActivity() {
             }
             Toast.makeText(this, "Expense added successfully", Toast.LENGTH_SHORT).show()
             clearFields()
+
+
+
+
+            lifecycleScope.launch(Dispatchers.IO) {
+                val totalSpent = expenseDao.getTotalAmountByUsername(loggedInUsername) ?: 0.0
+                val goal = goalDao.getLatestGoal()
+
+                if (goal != null) {
+                    val min = goal.minGoal
+                    val max = goal.maxGoal
+
+                    val progressPercent = when {
+                        totalSpent <= min -> 0
+                        totalSpent >= max -> 100
+                        else -> ((totalSpent - min) / (max - min) * 100).toInt()
+                    }
+
+                    withContext(Dispatchers.Main) {
+                        progressBar.progress = progressPercent
+                        tvProgressInfo.text = "You’ve spent R${String.format("%.2f", totalSpent)} — Goal Range: R$min to R$max"
+                    }
+                }
+            }
+
+
+
+
         }
 
 
