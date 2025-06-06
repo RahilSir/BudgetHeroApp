@@ -12,6 +12,12 @@ Display Images: Loads and displays an image for each expense item (with permissi
 
 Simple Navigation: Easy-to-use "Back" functionality to return to the previous screen.
 
+Monthly Report: A feature to view all your monthly expenses with the amount of each expense
+
+Report Download: The monthly report will be able to be downloaded as a PDF document
+
+Visual Representation: A bar graph showing expenses with the amounts
+
 BudgetApp/
 ├── app/
 │   ├── src/
